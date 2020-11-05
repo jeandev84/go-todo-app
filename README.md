@@ -32,3 +32,70 @@ DELETE     - Удаление
 ``git push -u origin main``
 ``…or import code from another repository``
 ``You can initialize this repository with code from a Subversion, Mercurial, or TFS project.``
+
+
+# СТРУКТУРА API
+
+POST /AUTH/SIGN-UP
+POST /AUTH/SIGN-IN
+
+
+GET /LISTS
+GET /LISTS/{ID}
+POST /LISTS
+PUT /LISTS/{ID}
+DELETE /LISTS/{ID}
+GET /LISTS/{ID}/ITEMS
+POST /LISTS/{ID}/ITEMS
+
+
+# СТРУКТУРА БД
+(Realtion ManyToMany)
+# TABLES
+``users_lists``
+id integer       (not null)
+user_id interger (not null)
+list_id integer  (not null)
+
+
+``list_items: ``
+id integer        (not null)
+list_id integer   (not null)
+item_id integer   (not null)
+
+
+``users : Пользователи``
+id integer (not null)
+name varchar(255)   (not null)
+username varchar(255)   (not null)
+password_hash varchar(255)   (not null)
+
+``todo_list : TODO списки``
+id integer (not null)
+title varchar(255) (not null)
+description varchar(255) (not null)
+
+
+``todo_item : Элементы список (задачи)`` 
+id integer (not null)
+title varchar(255) (not null)
+description varchar(255) (not null)
+done boolean (not null)
+
+
+# CREATE PROJECT
+$ mkdir todo-app
+$ cd todo-app
+todo-app$ go mod init github.com/zhashkevych/todo-app
+
+$ git init
+$ git add .
+$ git commit -m "initial projet"
+$ git push origin master
+
+# PACKAGES
+``Framework for working with HTTP``
+todo-app$ go get -u github.com/gin-gonic/gin
+
+# LUNCH PROJECT
+``go run ./cmd/main.go or go run cmd/main.go``
