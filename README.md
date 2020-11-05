@@ -140,6 +140,10 @@ SERVICE (Бизнес логика)
 REPOSITORY (Работа с БД)
 
 
+# Работа с файлами Конфигурации 
+``go get -u github.com/spf13/viper``
+
+
 # LUNCH PROJECT
 ``go run ./cmd/main.go or go run cmd/main.go``
 
