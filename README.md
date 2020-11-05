@@ -97,5 +97,49 @@ $ git push origin master
 ``Framework for working with HTTP``
 todo-app$ go get -u github.com/gin-gonic/gin
 
+# RESOURCE UNCLE BOB
+``https://blog.cleancoder.com/uncle-bob/2012/08/13/the-clean-architecture.html``
+
+
+# ГИБКИЕ И МАСШТАБИРУЕМЫЕ СИСТЕМЫ:
+``Позволяют безболезненно менять фреймворки и инфраструктурные элементы``
+
+``Имеют возможность изолированно тестировать каждый слой системы без зависимостей``
+
+``Не зависят от реализации пользовательского интерфейса``
+
+``Бизнес логика не зависит от конкретного выбора базы данных или других технических решений системы``
+
+# Правило DEPENDENCY INJECTION (Внедрение зависимостей)
+
+struct BlogPostSaver {
+    storage Storage
+}
+
+
+func NewBlogPostSaver() *BlogPostSaver {
+    return &BlogPostSaver{
+        storage: NewStorage(),
+    }
+}
+
+
+func (s *BlogPostSaver) Save(post *Post) {
+   s.Storage.Save(post)
+}
+
+
+# Клиент - Сервер
+
+HTTP Запросы
+  |
+HANDLER
+  |
+SERVICE (Бизнес логика)
+  |
+REPOSITORY (Работа с БД)
+
+
 # LUNCH PROJECT
 ``go run ./cmd/main.go or go run cmd/main.go``
+
