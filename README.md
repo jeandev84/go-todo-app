@@ -147,3 +147,35 @@ REPOSITORY (Работа с БД)
 # LUNCH PROJECT
 ``go run ./cmd/main.go or go run cmd/main.go``
 
+
+# DOCKER 
+- Установка Postgres
+``$ docker pull postgres``
+
+- Запуска нашего контейнера из база
+- e: password
+- p: port 5436:5432(by default)
+``$ docker run --name=todo-db -e POSTGRES_PASSWORD='qwerty' -p 5436:5432 -d --rm postgres``
+
+``$ docker ps``
+
+# MIGRATION (Control version of Database)
+``https://github.com/golang-migrate/migrate/v4``
+
+* Install Package for Migration
+``go get github.com/golang-migrate/migrate/v4``
+
+* Lunch command
+``migrate create -ext sql -dir ./schema -seq init``
+``migrate -source ./migrations -database postgres://localhost:5436/todoapp up 2``
+``migrate -source file://path/to/migrations -database postgres://localhost:5432/database up 2``
+
+# INSTALL GOLANG-MIGRATE LINUX
+$ curl -L https://packagecloud.io/golang-migrate/migrate/gpgkey | apt-key add -
+$ echo "deb https://packagecloud.io/golang-migrate/migrate/ubuntu/ $(lsb_release -sc) main" > /etc/apt/sources.list.d/migrate.list
+$ apt-get update
+$ apt-get install -y migrate
+
+# COMMAND FOR CREATING DATABASE
+psql -h localhost -U postgres -w -c "create database todoapp;"
+export POSTGRESQL_URL='postgres://postgres:password@localhost:5432/todoapp?sslmode=disable'

@@ -37,3 +37,14 @@ func initConfig() error {
 	viper.SetConfigName("config")
 	return viper.ReadInConfig()
 }
+
+/*
+func makeMigration() {
+	db, err := sql.Open("postgres", "postgres://localhost:5432/todoapp?sslmode=enable")
+	driver, err := postgres.WithInstance(db, &postgres.Config{})
+	m, err := migrate.NewWithDatabaseInstance(
+		"file:///migrations",
+		"postgres", driver)
+	m.Steps(2)
+}
+*/
